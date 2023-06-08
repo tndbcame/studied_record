@@ -173,11 +173,14 @@ class View(tk.Frame):
         
         #学習項目
         study_item = self.rdo_grp.get()
+
         #学習内容("end"だと\n 文字も含まれる→"end-1c"は一文字前まで)
         words = self.input_studied.get('1.0','end - 1c')
         self.input_studied.delete('1.0','end - 1c')
+
         #今日の日付
         dt_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+
         #勉強時間
         studied_time = self.timerView["text"]
         self.d.insert_study_record(words, dt_now, study_item, studied_time)
@@ -234,7 +237,6 @@ class View(tk.Frame):
             for n in range(len(record)):
                 self.studied_record = tk.Message(
                     self.innerFrame,
-                    # self.innerFrame,
                     text = record[n],
                     font=("Times New Roman", "10", "bold"),
                     background="#355e88",
@@ -242,6 +244,7 @@ class View(tk.Frame):
                     width=865
                     )
                 self.studied_record.pack(anchor=tk.W)
+
         #呼び出しカウント
         self.count += 1
         
@@ -276,6 +279,7 @@ class View(tk.Frame):
 
     def __init__(self, master=None):
         """初期処理"""
+
         #定数、変数定義
         self.INTERVAL = 10
         self.start_flag = False
@@ -297,4 +301,4 @@ class View(tk.Frame):
 
         #TODO
         #リファクタリングする
-        #スクロールバーを作成する
+        #一時間ごとにポップアップウィンドウ表示する機能を作る
